@@ -21,7 +21,7 @@ const renderTask = (task) => {
 
 const renderSpan = (li, text) => {
     const span = li.appendChild(document.createElement('span'))
-    span.innerHtml = text
+    span.innerHTML = text
 }
 
 const renderLink = (li, id) => {
@@ -49,22 +49,6 @@ const getTasks = () => {
     }).catch((error) => {
         alert(error)
     })
-}
-
-const saveTask = async (task) => {
-    try {
-        const json = JSON.stringify({ description: task })
-        const response = await fetch(BACKEND_ROOT_URL + '/new', {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: json
-        })
-        return response.json()
-    } catch (error) {
-        alert("Error saving task " + error.message)
-    }
 }
 
 input.addEventListener('keypress', (event) => {
